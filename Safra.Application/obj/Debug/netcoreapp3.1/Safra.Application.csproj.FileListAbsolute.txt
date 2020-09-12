@@ -1,0 +1,11 @@
+C:\Projects\SafraAPI\Safra.Application\bin\Debug\netcoreapp3.1\Safra.Application.deps.json
+C:\Projects\SafraAPI\Safra.Application\bin\Debug\netcoreapp3.1\Safra.Application.dll
+C:\Projects\SafraAPI\Safra.Application\bin\Debug\netcoreapp3.1\Safra.Application.pdb
+C:\Projects\SafraAPI\Safra.Application\bin\Debug\netcoreapp3.1\Safra.Domain.dll
+C:\Projects\SafraAPI\Safra.Application\bin\Debug\netcoreapp3.1\Safra.Domain.pdb
+C:\Projects\SafraAPI\Safra.Application\obj\Debug\netcoreapp3.1\Safra.Application.csprojAssemblyReference.cache
+C:\Projects\SafraAPI\Safra.Application\obj\Debug\netcoreapp3.1\Safra.Application.AssemblyInfoInputs.cache
+C:\Projects\SafraAPI\Safra.Application\obj\Debug\netcoreapp3.1\Safra.Application.AssemblyInfo.cs
+C:\Projects\SafraAPI\Safra.Application\obj\Debug\netcoreapp3.1\Safra.Application.csproj.CopyComplete
+C:\Projects\SafraAPI\Safra.Application\obj\Debug\netcoreapp3.1\Safra.Application.dll
+C:\Projects\SafraAPI\Safra.Application\obj\Debug\netcoreapp3.1\Safra.Application.pdb
