@@ -26,7 +26,7 @@ namespace Safra.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            const string connectionString = "Data Source=localhost; Initial Catalog=Safra; Integrated Security=True;";
+            var connectionString = Configuration.GetConnectionString("AzureDabataseConnection");
 
             services.AddControllers();
 
