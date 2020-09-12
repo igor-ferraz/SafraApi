@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Safra.Domain.InfrastructureServices;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Safra.API.Filters
 {
@@ -14,7 +16,7 @@ namespace Safra.API.Filters
             _httpService = httpService;
         }
 
-        public async override void OnActionExecuting(ActionExecutingContext context)
+        public async override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             const string safraHealthUrl = "https://af3tqle6wgdocsdirzlfrq7w5m.apigateway.sa-saopaulo-1.oci.customer-oci.com/fiap-sandbox/health";
 
@@ -31,11 +33,19 @@ namespace Safra.API.Filters
             }
 
             var response = await _httpService.ExecuteRequest(safraHealthUrl, RestSharp.Method.GET, headers);
-            
+
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
-                
+                var errorResponse = new
+                {
+                    message = "Unauthorized",
+                    code = 401
+                };
+
+                context.Result = new UnauthorizedObjectResult(errorResponse);
             }
+            else
+                await next();
         }
     }
 }

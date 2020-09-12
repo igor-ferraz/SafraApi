@@ -7,6 +7,10 @@ namespace Safra.Domain.Repositories
 {
     public interface IProductRepository
     {
-        Task<List<Product>> Get();
+        Task<List<Product>> Get(bool showInactives);
+        Task<Product> Get(int id);
+        Task<bool> Add(Product product);
+        Task<bool> Update(Product product);
+        Task<bool> Delete(int id);
     }
 }
