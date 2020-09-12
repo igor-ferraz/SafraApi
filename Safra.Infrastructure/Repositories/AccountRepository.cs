@@ -1,11 +1,10 @@
 ﻿using Dapper;
-using Safra.Domain.Models;
-using Safra.Domain.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
+using Safra.Domain.Models;
+using Safra.Domain.Repositories;
 
 namespace Safra.Infrastructure.Repositories
 {

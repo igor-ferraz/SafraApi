@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
 using Safra.API.Filters;
 using Safra.Domain.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Safra.API.Controllers
 {

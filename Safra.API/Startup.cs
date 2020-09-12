@@ -30,17 +30,17 @@ namespace Safra.API
 
             services.AddControllers();
 
-            // Filters
-            services.AddScoped<AuthFilter>();
+            // Repositories
+            services.AddScoped<IProductRepository, ProductRepository>(_ => new ProductRepository(connectionString));
+            services.AddScoped<IAccountRepository, AccountRepository>(_ => new AccountRepository(connectionString));
 
             // Services
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IAccountService, AccountService>();
 
-            // Repositories
-            services.AddScoped<IProductRepository, ProductRepository>(_ => new ProductRepository(connectionString));
-            services.AddScoped<IAccountRepository, AccountRepository>(_ => new AccountRepository(connectionString));
+            // Filters
+            services.AddScoped<AuthFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

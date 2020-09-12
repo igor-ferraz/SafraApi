@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Safra.Domain.ApplicationServices;
 using Safra.Domain.Models;
 using Safra.Domain.Repositories;
