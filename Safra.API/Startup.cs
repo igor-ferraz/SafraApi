@@ -29,10 +29,18 @@ namespace Safra.API
             const string connectionString = "Data Source=localhost; Initial Catalog=Safra; Integrated Security=True;";
 
             services.AddControllers();
+
+            // Filters
             services.AddScoped<AuthFilter>();
-            services.AddScoped<IProductRepository, ProductRepository>(_ => new ProductRepository(connectionString));
-            services.AddScoped<IProductService, ProductService>();
+
+            // Services
             services.AddScoped<IHttpService, HttpService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IAccountService, AccountService>();
+
+            // Repositories
+            services.AddScoped<IProductRepository, ProductRepository>(_ => new ProductRepository(connectionString));
+            services.AddScoped<IAccountRepository, AccountRepository>(_ => new AccountRepository(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
