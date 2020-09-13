@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Safra.Domain.InfrastructureServices;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+
+using Safra.Domain.InfrastructureServices;
 
 namespace Safra.API.Filters
 {

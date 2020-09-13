@@ -19,14 +19,7 @@ namespace Safra.API.Controllers
             this.service = service;
         }
 
-        [HttpGet("{id}/products")]
-        public async Task<IActionResult> GetProducts(string id, bool showInactives = false)
-        {
-            var products = await service.GetProducts(id, showInactives);
-            return Ok(products);
-        }
-
-        [HttpGet("{id:int}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetBasicData(string id)
         {
             var basicAccount = await service.GetBasicData(id);
@@ -35,6 +28,27 @@ namespace Safra.API.Controllers
                 return BadRequest();
 
             return Ok(basicAccount);
+        }
+
+        [HttpGet("{id}/products")]
+        public async Task<IActionResult> GetProducts(string id, bool showInactives = false)
+        {
+            var products = await service.GetProducts(id, showInactives);
+            return Ok(products);
+        }
+
+        [HttpGet("{id}/balances")]
+        public async Task<IActionResult> GetBalances(string id)
+        {
+            var balances = await service.GetBalances(id);
+            return Ok(balances);
+        }
+
+        [HttpGet("{id}/transactions")]
+        public async Task<IActionResult> GetTransactions(string id)
+        {
+            var transactions = await service.GetTransactions(id);
+            return Ok(transactions);
         }
     }
 }

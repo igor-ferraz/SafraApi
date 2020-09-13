@@ -23,12 +23,7 @@ namespace Safra.Domain.Models
         public List<AccountInfo> Account { get; set; }
     }
 
-    public class Link
-    {
-        public string Self { get; set; }
-    }
-
-    public class BasicAccount
+    public class AccountResult
     {
         public AccountData Data { get; set; }
         public Link Links { get; set; }

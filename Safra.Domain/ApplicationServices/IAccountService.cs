@@ -7,7 +7,9 @@ namespace Safra.Domain.ApplicationServices
 {
     public interface IAccountService
     {
+        Task<AccountResult> GetBasicData(string id);
         Task<List<Product>> GetProducts(string accountId, bool showInactives);
-        Task<BasicAccount> GetBasicData(string id);
+        Task<BalancesResult> GetBalances(string id);
+        Task<TransactionResult> GetTransactions(string id);
     }
 }
