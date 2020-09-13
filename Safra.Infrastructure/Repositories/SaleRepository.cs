@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Safra.Domain.Models;
 using Safra.Domain.Repositories;
+using System.Linq;
 
 namespace Safra.Infrastructure.Repositories
 {
@@ -58,6 +59,45 @@ namespace Safra.Infrastructure.Repositories
             }
 
             return null;
+        }
+
+        public async Task<Sale> Get(string id)
+        {
+            const string selectSale = "SELECT TOP 1 * FROM Sales WHERE Id = @Id";
+            const string selectProductsSale = "SELECT * FROM SalesProducts WHERE SaleId = @SaleId";
+            const string selectProduct = "SELECT * FROM Products WHERE Id IN (@Ids)";
+
+            var connection = CreateConnection();
+            var sale = await connection.QueryFirstOrDefaultAsync<Sale>(
+                selectSale,
+                new
+                {
+                    Id = id
+                });
+
+            var productsSale = await connection.QueryAsync<ProductSale>(
+                selectProductsSale,
+                new
+                {
+                    SaleId = id
+                });
+
+            sale.Products = new List<ProductSale>();
+            sale.Products.AddRange(productsSale);
+
+            var products = await connection.QueryAsync<Product>(
+                selectProduct,
+                new
+                {
+                    Ids = productsSale.Select(p => p.ProductId)
+                });
+
+            foreach (var productSale in sale.Products)
+            {
+                productSale.ProductReference = products.FirstOrDefault(p => p.Id == productSale.ProductId);
+            }
+
+            return sale;
         }
     }
 }

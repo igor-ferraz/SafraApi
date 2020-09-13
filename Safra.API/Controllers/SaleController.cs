@@ -11,7 +11,6 @@ using Safra.Domain.Models;
 
 namespace Safra.API.Controllers
 {
-    [ServiceFilter(typeof(AuthFilter))]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class SaleController : Controller
@@ -23,6 +22,7 @@ namespace Safra.API.Controllers
             this.saleService = saleService;
         }
 
+        [ServiceFilter(typeof(AuthFilter))]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Sale sale)
         {
@@ -40,6 +40,17 @@ namespace Safra.API.Controllers
                     });
             else
                 return BadRequest();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var sales = await saleService.Get(id);
+
+            if (sales != null)
+                return Ok(sales);
+
+            return NotFound();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Safra.Domain.Models
 {
     public class Sale
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string AccountId { get; set; }
         public bool AlreadyPaid { get; set; }
         public DateTime? PaymentDate { get; set; }

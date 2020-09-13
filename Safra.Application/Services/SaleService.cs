@@ -19,5 +19,10 @@ namespace Safra.Application.Services
         {
             return await saleRepository.Create(sale);
         }
+
+        public async Task<Sale> Get(string id)
+        {
+            return await saleRepository.Get(id);
+        }
     }
 }
