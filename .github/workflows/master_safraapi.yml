@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'safraapi'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6c36c86d335b49c4a8a289cee225ec96 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_55e4b5fc15394ca3b711b2711e1a2506 }}
         package: ${{env.DOTNET_ROOT}}/myapp 
