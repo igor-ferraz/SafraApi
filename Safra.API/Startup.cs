@@ -41,6 +41,7 @@ namespace Safra.API
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             // Filters
             services.AddScoped<AuthFilter>();

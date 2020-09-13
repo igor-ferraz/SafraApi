@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using System.Threading.Tasks;
+
 using Safra.Domain.ApplicationServices;
+using Safra.Domain.Models;
 using Safra.Domain.Repositories;
 
 namespace Safra.Application.Services
@@ -14,6 +14,11 @@ namespace Safra.Application.Services
         public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
+        }
+
+        public async Task<ClientSecret> Login(UserLogin login)
+        {
+            return await userRepository.Login(login);
         }
 
         public async Task<bool> SaveToken(string clientId, string token)

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using Safra.Domain.Repositories;
+using Safra.Domain.Models;
 
 namespace Safra.Infrastructure.Repositories
 {
@@ -11,9 +12,25 @@ namespace Safra.Infrastructure.Repositories
         {
         }
 
+        public async Task<ClientSecret> Login(UserLogin login)
+        {
+            const string sql = "SELECT TOP 1 ClientId, Secret FROM Users WHERE Email = @Email AND Password = @Password";
+
+            var connection = CreateConnection();
+            var result = await connection.QueryFirstOrDefaultAsync<ClientSecret>(
+                sql,
+                new
+                {
+                    login.Email,
+                    login.Password
+                });
+
+            return result;
+        }
+
         public async Task<bool> SaveToken(string clientId, string token)
         {
-            const string sql = "UPDATE Users SET Token = @Token WHERE ClientId = @ClientId";
+            const string sql = "UPDATE Users SET CurrentToken = @Token WHERE ClientId = @ClientId";
 
             var connection = CreateConnection();
             var result = await connection.ExecuteAsync(

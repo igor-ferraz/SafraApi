@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Safra.Application\Safra.Application.csproj" />
     <ProjectReference Include="..\Safra.Domain\Safra.Domain.csproj" />
     <ProjectReference Include="..\Safra.Infrastructure\Safra.Infrastructure.csproj" />

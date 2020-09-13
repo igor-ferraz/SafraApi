@@ -25,11 +25,13 @@ namespace Safra.Application.Services
         public async Task<BasicAccount> GetBasicData(string id)
         {
             var safraUrl = $"https://af3tqle6wgdocsdirzlfrq7w5m.apigateway.sa-saopaulo-1.oci.customer-oci.com/fiap-sandbox/open-banking/v1/accounts/{id}";
-            var headers = new Dictionary<string, string>();
 
             var token = await userService.GetCurrentTokenByAccount(id);
 
-            headers.Add("Authorization", $"Bearer {token}");
+            var headers = new Dictionary<string, string>()
+            {
+                { "Authorization", $"Bearer {token}" }
+            };
 
             var result = await httpService.ExecuteRequest(safraUrl, RestSharp.Method.GET, headers);
 
