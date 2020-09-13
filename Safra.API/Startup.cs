@@ -36,6 +36,7 @@ namespace Safra.API
 
             // Services
             services.AddScoped<IHttpService, HttpService>();
+            services.AddScoped<IFileService, FileService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IAccountService, AccountService>();
 
