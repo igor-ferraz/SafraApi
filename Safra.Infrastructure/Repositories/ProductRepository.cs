@@ -29,6 +29,21 @@ namespace Safra.Infrastructure.Repositories
             return products.ToList();
         }
 
+        public async Task<List<Product>> GetByAccount(int accountId)
+        {
+            const string sql = "SELECT * FROM Products WHERE AccountId = @AccountId AND Active = 1";
+
+            using var connection = CreateConnection();
+            var products = await connection.QueryAsync<Product>(
+                sql,
+                new
+                {
+                    AccountId = accountId
+                });
+
+            return products.ToList();
+        }
+
         public async Task<Product> Get(int id)
         {
             const string sql = "SELECT * FROM Products WHERE Id = @Id";

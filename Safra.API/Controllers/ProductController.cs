@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,6 +40,13 @@ namespace Safra.API.Controllers
         {
             var product = await service.Get(id);
             return Ok(product);
+        }
+
+        [HttpGet("account/{accountId}")]
+        public async Task<IActionResult> GetByAccount(int accountId)
+        {
+            var products = await service.GetByAccount(accountId);
+            return Ok(products);
         }
 
         [HttpPost]
