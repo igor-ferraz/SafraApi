@@ -4,6 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Safra.Domain.InfrastructureServices;
+using System.Text.Json;
+using System;
 
 namespace Safra.Infrastructure.Services
 {
@@ -24,6 +26,12 @@ namespace Safra.Infrastructure.Services
 
             using var cancellationTokenSource = new CancellationTokenSource();
             return await client.ExecuteAsync(request, cancellationTokenSource.Token);
+        }
+
+        public T GetObjectFromJson<T>(string json)
+        {
+            var generatedType = JsonSerializer.Deserialize<T>(json);
+            return (T)Convert.ChangeType(generatedType, typeof(T));
         }
     }
 }

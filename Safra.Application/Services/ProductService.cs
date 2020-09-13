@@ -21,11 +21,6 @@ namespace Safra.Application.Services
             return _repository.Get(showInactives);
         }
 
-        public Task<List<Product>> GetByAccount(int accountId)
-        {
-            return _repository.GetByAccount(accountId);
-        }
-
         public Task<Product> Get(int id)
         {
             return _repository.Get(id);

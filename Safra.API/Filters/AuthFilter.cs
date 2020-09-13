@@ -9,11 +9,11 @@ namespace Safra.API.Filters
 {
     public class AuthFilter : ActionFilterAttribute
     {
-        private readonly IHttpService _httpService;
+        private readonly IHttpService httpService;
 
         public AuthFilter(IHttpService httpService)
         {
-            _httpService = httpService;
+            this.httpService = httpService;
         }
 
         public async override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
@@ -32,7 +32,7 @@ namespace Safra.API.Filters
                 }
             }
 
-            var response = await _httpService.ExecuteRequest(safraHealthUrl, RestSharp.Method.GET, headers);
+            var response = await httpService.ExecuteRequest(safraHealthUrl, RestSharp.Method.GET, headers);
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {

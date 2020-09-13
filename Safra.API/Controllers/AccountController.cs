@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Safra.API.Filters;
 using Safra.Domain.ApplicationServices;
+using Safra.Domain.Models;
 
 namespace Safra.API.Controllers
 {
@@ -18,12 +19,22 @@ namespace Safra.API.Controllers
             this.service = service;
         }
 
-        [HttpGet]
-        [Route("{id:int}")]
-        public async Task<IActionResult> GetProducts(int id, bool showInactives = false)
+        [HttpGet("{id}/products")]
+        public async Task<IActionResult> GetProducts(string id, bool showInactives = false)
         {
             var products = await service.GetProducts(id, showInactives);
             return Ok(products);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetBasicData(string id)
+        {
+            var basicAccount = await service.GetBasicData(id);
+
+            if (basicAccount == null)
+                return BadRequest();
+
+            return Ok(basicAccount);
         }
     }
 }

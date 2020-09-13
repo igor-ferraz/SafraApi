@@ -42,13 +42,6 @@ namespace Safra.API.Controllers
             return Ok(product);
         }
 
-        [HttpGet("account/{accountId}")]
-        public async Task<IActionResult> GetByAccount(int accountId)
-        {
-            var products = await service.GetByAccount(accountId);
-            return Ok(products);
-        }
-
         [HttpPost]
         public async Task<IActionResult> Add([FromBody]Product product)
         {

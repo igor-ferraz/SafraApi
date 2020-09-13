@@ -14,7 +14,7 @@ namespace Safra.Infrastructure.Repositories
         {
         }
 
-        public async Task<List<Product>> GetProducts(int accountId, bool showInactives)
+        public async Task<List<Product>> GetProducts(string accountId, bool showInactives)
         {
             const string sql = "SELECT * FROM Products WHERE AccountId = @AccountId";
 

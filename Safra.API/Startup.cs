@@ -33,12 +33,14 @@ namespace Safra.API
             // Repositories
             services.AddScoped<IProductRepository, ProductRepository>(_ => new ProductRepository(connectionString));
             services.AddScoped<IAccountRepository, AccountRepository>(_ => new AccountRepository(connectionString));
+            services.AddScoped<IUserRepository, UserRepository>(_ => new UserRepository(connectionString));
 
             // Services
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IUserService, UserService>();
 
             // Filters
             services.AddScoped<AuthFilter>();

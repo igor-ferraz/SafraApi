@@ -8,7 +8,6 @@ namespace Safra.Domain.Repositories
     public interface IProductRepository
     {
         Task<List<Product>> Get(bool showInactives);
-        Task<List<Product>> GetByAccount(int accountId);
         Task<Product> Get(int id);
         Task<bool> Add(Product product);
         Task<bool> Update(Product product);
