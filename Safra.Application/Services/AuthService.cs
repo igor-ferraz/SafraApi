@@ -33,7 +33,7 @@ namespace Safra.Application.Services
                 { "Content-Type", "application/x-www-form-urlencoded" }
             };
 
-            var result = await httpService.ExecuteRequest(safraUrl, RestSharp.Method.POST, headers, safraBody);
+            var result = await httpService.ExecuteRequest(safraUrl, RestSharp.Method.POST, headers, safraBody, "application/x-www-form-urlencoded");
 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {

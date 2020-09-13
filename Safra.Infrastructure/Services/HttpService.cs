@@ -11,7 +11,7 @@ namespace Safra.Infrastructure.Services
 {
     public class HttpService : IHttpService
     {
-        public async Task<IRestResponse> ExecuteRequest(string url, Method method, Dictionary<string, string> headers = null, string body = null)
+        public async Task<IRestResponse> ExecuteRequest(string url, Method method, Dictionary<string, string> headers = null, string body = null, string bodyType = null)
         {
             var client = new RestClient(url);
             var request = new RestRequest(method);
@@ -25,7 +25,7 @@ namespace Safra.Infrastructure.Services
             }
 
             if (body != null)
-                request.AddParameter("application/x-www-form-urlencoded", body, ParameterType.RequestBody);
+                request.AddParameter(bodyType, body, ParameterType.RequestBody);
 
             using var cancellationTokenSource = new CancellationTokenSource();
             return await client.ExecuteAsync(request, cancellationTokenSource.Token);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using RestSharp;
 using Safra.Domain.ApplicationServices;
@@ -82,6 +83,22 @@ namespace Safra.Application.Services
             }
 
             return null;
+        }
+
+        public async Task<bool> OptIn(OptIn optIn, string authorization)
+        {
+            const string safraUrl = "https://af3tqle6wgdocsdirzlfrq7w5m.apigateway.sa-saopaulo-1.oci.customer-oci.com/fiap-sandbox/accounts/v1/optin";
+
+            var headers = new Dictionary<string, string>()
+            {
+                { "Authorization", authorization }
+            };
+
+            var json = JsonSerializer.Serialize<OptIn>(optIn);
+
+            var result = await httpService.ExecuteRequest(safraUrl, Method.POST, headers, json, "application/json");
+
+            return result.StatusCode == System.Net.HttpStatusCode.Created;
         }
     }
 }

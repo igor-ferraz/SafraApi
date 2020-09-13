@@ -50,5 +50,16 @@ namespace Safra.API.Controllers
             var transactions = await service.GetTransactions(id);
             return Ok(transactions);
         }
+
+        [HttpPost("optin")]
+        public async Task<IActionResult> OptIn([FromBody] OptIn optIn, [FromHeader] string authorization)
+        {
+            var result = await service.OptIn(optIn, authorization);
+
+            if (result)
+                return Created("", null);
+
+            return BadRequest();
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Safra.Domain.ApplicationServices
         Task<List<Product>> GetProducts(string accountId, bool showInactives);
         Task<BalancesResult> GetBalances(string id);
         Task<TransactionResult> GetTransactions(string id);
+        Task<bool> OptIn(OptIn optIn, string authorization);
     }
 }
