@@ -12,14 +12,14 @@ namespace Safra.Infrastructure.Repositories
 
         public async Task<ClientSecret> Login(UserLogin login)
         {
-            const string sql = "SELECT TOP 1 ClientId, Secret FROM Users WHERE Email = @Email AND Password = @Password";
+            const string sql = "SELECT TOP 1 ClientId, Secret FROM Users WHERE AccountId = @AccountId AND Password = @Password";
 
             var connection = CreateConnection();
             var result = await connection.QueryFirstOrDefaultAsync<ClientSecret>(
                 sql,
                 new
                 {
-                    login.Email,
+                    login.AccountId,
                     login.Password
                 });
 
