@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +42,13 @@ namespace Safra.API.Controllers
             return Ok(product);
         }
 
+        [HttpGet("account/{accountId}")]
+        public async Task<IActionResult> GetByAccount(int accountId)
+        {
+            var products = await service.GetByAccount(accountId);
+            return Ok(products);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add([FromBody]Product product)
         {
@@ -53,10 +59,16 @@ namespace Safra.API.Controllers
         [HttpPost("{id:int}/image")]
         public async Task<IActionResult> UploadImage(int id, [FromForm(Name = "image")] IFormFile image)
         {
+            System.Diagnostics.Debug.Print("Entrei no ProductController | método UploadImage()");
+
             if (image != null && fileService.IsImage(image))
             {
-                if (!Directory.Exists(ImagesPath))
+                System.Diagnostics.Debug.Print("ProductController: imagem é válida!");
+
+                if (Directory.Exists(ImagesPath))
                 {
+                    System.Diagnostics.Debug.Print("ProductController: diretório existe!");
+
                     var files = Directory.GetFiles(ImagesPath, $"Product_{id}.*");
 
                     foreach (var file in files)
