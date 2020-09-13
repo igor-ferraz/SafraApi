@@ -34,6 +34,7 @@ namespace Safra.API
             services.AddScoped<IProductRepository, ProductRepository>(_ => new ProductRepository(connectionString));
             services.AddScoped<IAccountRepository, AccountRepository>(_ => new AccountRepository(connectionString));
             services.AddScoped<IUserRepository, UserRepository>(_ => new UserRepository(connectionString));
+            services.AddScoped<ISaleRepository, SaleRepository>(_ => new SaleRepository(connectionString));
 
             // Services
             services.AddScoped<IHttpService, HttpService>();
@@ -42,6 +43,7 @@ namespace Safra.API
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ISaleService, SaleService>();
 
             // Filters
             services.AddScoped<AuthFilter>();

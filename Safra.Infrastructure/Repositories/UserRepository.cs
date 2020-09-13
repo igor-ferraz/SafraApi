@@ -8,9 +8,7 @@ namespace Safra.Infrastructure.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        public UserRepository(string connectionString) : base(connectionString)
-        {
-        }
+        public UserRepository(string connectionString) : base(connectionString) { }
 
         public async Task<ClientSecret> Login(UserLogin login)
         {

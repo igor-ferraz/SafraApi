@@ -10,9 +10,7 @@ namespace Safra.Infrastructure.Repositories
 {
     public class AccountRepository : BaseRepository, IAccountRepository
     {
-        public AccountRepository(string connectionString) : base(connectionString)
-        {
-        }
+        public AccountRepository(string connectionString) : base(connectionString) { }
 
         public async Task<List<Product>> GetProducts(string accountId, bool showInactives)
         {
