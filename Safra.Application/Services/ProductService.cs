@@ -26,7 +26,7 @@ namespace Safra.Application.Services
             return _repository.Get(id);
         }
 
-        public Task<bool> Add(Product product)
+        public Task<int> Add(Product product)
         {
             return _repository.Add(product);
         }

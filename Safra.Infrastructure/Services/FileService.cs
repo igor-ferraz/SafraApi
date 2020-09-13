@@ -45,17 +45,12 @@ namespace Safra.Infrastructure.Services
 
         public async Task<bool> Save(IFormFile file, string baseName, string path)
         {
-            System.Diagnostics.Debug.Print("Entrei no FileService | método Save()");
-
             if (!Directory.Exists(path))
             {
-                System.Diagnostics.Debug.Print("FileService: diretório não existe: " + path);
                 Directory.CreateDirectory(path);
             }
 
             var filePath = Path.Combine(path, baseName + Path.GetExtension(file.FileName));
-
-            System.Diagnostics.Debug.Print("FileService: filepath: " + filePath);
 
             using var fileStream = new FileStream(filePath, FileMode.Create);
             await file.CopyToAsync(fileStream);

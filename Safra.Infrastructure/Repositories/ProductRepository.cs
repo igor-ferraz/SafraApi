@@ -40,12 +40,19 @@ namespace Safra.Infrastructure.Repositories
                 });
         }
 
-        public async Task<bool> Add(Product product)
+        public async Task<int> Add(Product product)
         {
-            const string sql = "INSERT INTO Products (Name, Description, Price, AccountId) VALUES(@Name, @Description, @Price, @AccountId)";
+            const string sql = @"
+                DECLARE @Ids TABLE (Id INT);
+
+                INSERT INTO Products (Name, Description, Price, AccountId)
+                    OUTPUT inserted.Id INTO @Ids
+                    VALUES(@Name, @Description, @Price, @AccountId);
+
+                SELECT TOP 1 Id FROM @Ids;";
 
             using var connection = CreateConnection();
-            var result = await connection.ExecuteAsync(
+            var productId = await connection.QueryFirstOrDefaultAsync<int>(
                 sql,
                 new
                 {
@@ -55,7 +62,7 @@ namespace Safra.Infrastructure.Repositories
                     product.AccountId
                 });
 
-            return result == 1;
+            return productId;
         }
 
         public async Task<bool> Update(Product product)
