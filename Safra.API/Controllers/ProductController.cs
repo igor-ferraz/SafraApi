@@ -53,10 +53,16 @@ namespace Safra.API.Controllers
         [HttpPost("{id:int}/image")]
         public async Task<IActionResult> UploadImage(int id, [FromForm(Name = "image")] IFormFile image)
         {
+            System.Diagnostics.Debug.Print("Entrei no ProductController | método UploadImage()");
+
             if (image != null && fileService.IsImage(image))
             {
-                if (!Directory.Exists(ImagesPath))
+                System.Diagnostics.Debug.Print("ProductController: imagem é válida!");
+
+                if (Directory.Exists(ImagesPath))
                 {
+                    System.Diagnostics.Debug.Print("ProductController: diretório existe!");
+
                     var files = Directory.GetFiles(ImagesPath, $"Product_{id}.*");
 
                     foreach (var file in files)
