@@ -46,10 +46,16 @@ namespace Safra.API.Controllers
         public async Task<IActionResult> Add([FromBody]Product product)
         {
             var productId = await service.Add(product);
-            return Ok(new
-            {
-                ProductId = productId
-            });
+
+            if (productId > 0)
+                return Created(
+                    "Product",
+                    new
+                    {
+                        ProductId = productId
+                    });
+            else
+                return BadRequest();
         }
 
         [HttpPost("{id:int}/image")]

@@ -32,10 +32,12 @@ namespace Safra.API.Controllers
             //var paymentUrl = $"http://localhost:54671/api/v1/payment/{saleId}";
 
             if (saleId != null)
-                return Created("Sale", new
-                {
-                    Url = paymentUrl
-                });
+                return Created(
+                    "Sale",
+                    new
+                    {
+                        Url = paymentUrl
+                    });
             else
                 return BadRequest();
         }

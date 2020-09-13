@@ -57,7 +57,7 @@ namespace Safra.API.Controllers
             var result = await service.OptIn(optIn, authorization);
 
             if (result)
-                return Created("", null);
+                return Created("OptIn", null);
 
             return BadRequest();
         }
