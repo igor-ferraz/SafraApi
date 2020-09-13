@@ -55,11 +55,14 @@ namespace Safra.API.Controllers
         {
             if (image != null && fileService.IsImage(image))
             {
-                var files = Directory.GetFiles(ImagesPath, $"Product_{id}.*");
-
-                foreach (var file in files)
+                if (!Directory.Exists(ImagesPath))
                 {
-                    System.IO.File.Delete(file);
+                    var files = Directory.GetFiles(ImagesPath, $"Product_{id}.*");
+
+                    foreach (var file in files)
+                    {
+                        System.IO.File.Delete(file);
+                    }
                 }
 
                 var result = await fileService.Save(image, $"Product_{id}", ImagesPath);
