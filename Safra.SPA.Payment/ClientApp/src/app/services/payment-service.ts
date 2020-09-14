@@ -17,4 +17,9 @@ export class PaymentService {
     let url = `${this.server}/${this.salePrefix}/${id}`;
     return this.httpClient.get(url);
   }
+
+  Pay(saleId: string, paymentMethod: number): Observable<any> {
+    let url = `${this.server}/${this.salePrefix}/${saleId}/paymentMethod/${paymentMethod}`;
+    return this.httpClient.get(url);
+  }
 }

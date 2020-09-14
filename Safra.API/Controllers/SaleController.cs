@@ -52,5 +52,14 @@ namespace Safra.API.Controllers
 
             return NotFound();
         }
+
+        [HttpGet("{id}/paymentMethod/{paymentMethod:int}")]
+        public async Task<IActionResult> Pay(string saleId, int paymentMethod)
+        {
+            if (paymentMethod == 3 || paymentMethod == 5)
+                return Ok();
+
+            return BadRequest();
+        }
     }
 }

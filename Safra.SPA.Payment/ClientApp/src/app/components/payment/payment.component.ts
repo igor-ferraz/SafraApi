@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from 'src/app/services/payment-service'
+import { PaymentService } from 'src/app/services/payment-service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -8,16 +9,34 @@ import { PaymentService } from 'src/app/services/payment-service'
 })
 export class PaymentComponent implements OnInit {
 
-  constructor(private paymentService: PaymentService) { }
+  constructor(private paymentService: PaymentService, private route: ActivatedRoute,) { }
+
+  totalPrice: number = 0;
+  sale: any;
+  saleId: string;
 
   ngOnInit() {
-    this.GetSales();
+    this.route.params.subscribe(params => {
+      this.saleId = params["saleId"];
+      this.GetSales();
+    });
   }
 
   GetSales() {
-    this.paymentService.GetSales("4B359A02-E53A-4DCC-88A3-1279F2C118EF").subscribe(
+    this.paymentService.GetSales(this.saleId).subscribe(
       (response) => {
-        console.log(response);
+        response.products.forEach(p => this.totalPrice += (p.unitPrice * p.quantity));
+        this.sale = response;
+      });
+  }
+
+  Pay(paymentMethod: number) {
+    this.paymentService.Pay(this.saleId, paymentMethod).subscribe(
+      (response) => {
+        alert("Pagamento efetuado com sucesso!");
+      },
+      (error) => {
+        alert("No momento, não é possível utilizar este método de pagamento.")
       });
   }
 }

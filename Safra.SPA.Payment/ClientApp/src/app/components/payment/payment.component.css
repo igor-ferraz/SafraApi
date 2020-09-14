@@ -1,0 +1,95 @@
+.background-image {
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: .2;
+}
+
+.fullscreen {
+  background-color: #07103e;
+  padding: 45px 0px;
+}
+
+.title {
+  color: #fff;
+  text-shadow: 1px 1px #bbb;
+  text-transform: uppercase;
+}
+
+.item-pill {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+div .item-pill:first-child:not() {
+  margin-top: 15px;
+}
+
+div .item-pill:nth-child(even) {
+  background-color: #a69967;
+}
+
+.quantity {
+    font-size: 1.3em;
+}
+
+.total-price {
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.payment-methods {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+  .payment-methods .col-md-2 {
+      padding: 0 !important;
+  }
+
+.icon {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+.loadingData {
+  height: 100vh;
+}
+
+#sale-content {
+  margin: 60px 20px;
+  text-transform: uppercase;
+}
+
+#total-price-container {
+  text-align: center;
+  background-color: #ffffff45;
+  padding: 20px;
+  border-radius: 15px;
+  color: #fff;
+  height: 140px;
+}
+
+@media screen and (max-width: 1024px) {
+  .background-image {
+    left: 50%;
+    margin-left: -512px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #total-price-container {
+    padding: 10px;
+    height: 110px;
+    margin-top: 30px;
+  }
+}

@@ -1,1 +1,72 @@
-<p>payment works!</p>
+<div class="fullscreen">
+  <div *ngIf="sale">
+    <img src=".\assets/images/background.jpg" class="background-image" />
+    <h1 class="title text-center">Você está comprando</h1>
+    <div class="row" id="sale-content">
+      <div class="col-md-6">
+        <div class="item-pill col-md-9 offset-md-3" *ngFor="let product of sale.products">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <span class="quantity">&times;{{ product.quantity }}</span>&nbsp;
+              {{ product.productReference.name }}
+            </div>
+            <div class="col-md-6 col-sm-6 text-right">
+              {{ product.quantity * product.unitPrice | currency: "BRL" : true }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-9 col-xs-8 offset-xs-2" id="total-price-container">
+          <h4>TOTAL</h4>
+          <span class="total-price">
+            {{ totalPrice | currency: "BRL" : true }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <h4 class="title text-center">Como deseja pagar?</h4>
+    <div class="payment-methods text-center col-md-8 offset-md-2">
+      <div class="row">
+        <div class="col-md-2 offset-md-1">
+          <a class="btn" (click)="Pay(1)">
+            <img src=".\assets/images/qrcode-icon.png" class="icon qrcode-icon" />
+            <br />
+            QR Code
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn" (click)="Pay(2)">
+            <img src=".\assets/images/boleto-icon.png" class="icon boleto-icon" />
+            <br />
+            Boleto bancário
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn" (click)="Pay(3)">
+            <img src=".\assets/images/card-icon.png" class="icon credit-card-icon" />
+            <br />
+            Cartão de Crédito
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn" (click)="Pay(4)">
+            <img src=".\assets/images/card-icon.png" class="icon credit-card-icon" />
+            <br />
+            Cartão de Débito
+          </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn" (click)="Pay(5)">
+            <img src=".\assets/images/transfer-icon.png" class="icon transfer-icon" />
+            <br />
+            Transferência
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!sale" class="loadingData text-center">
+    <h1 class="title">Carregando informações...</h1>
+  </div>
+</div>
