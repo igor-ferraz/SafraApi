@@ -28,7 +28,7 @@ namespace Safra.API.Controllers
         {
             var saleId = await saleService.Create(sale);
 
-            var paymentUrl = $"https://safraapi.azurewebsites.net/api/v1/payment/{saleId}";
+            var paymentUrl = $"https://safraapi.azurewebsites.net/payment/{saleId}";
             //var paymentUrl = $"http://localhost:54671/api/v1/payment/{saleId}";
 
             if (saleId != null)
